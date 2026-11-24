@@ -37,7 +37,6 @@ public partial class UrsaFluent2Theme : Styles, IResourceNode
             ?? throw new InvalidOperationException("The CompactStyles resource is missing."));
         Resources.Remove("CompactStyles");
         Resources.MergedDictionaries.Add(new DefaultSizeAnimations());
-        Resources.MergedDictionaries.Add(new NavMenuSizeAnimations());
     }
 
     public static readonly DirectProperty<UrsaFluent2Theme, DensityStyle> DensityStyleProperty =

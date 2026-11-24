@@ -3,14 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
-        <HeaderedContentControl Theme="{StaticResource GroupBox}" Width="500">
+        <StackPanel Width="500">
             <u:Banner
-                Classes="Bordered"
                 Header="Title"
                 Content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
                 Type="Warning"
                 CanClose="True" />
-        </HeaderedContentControl>
+        </StackPanel>
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type u:Banner}" TargetType="u:Banner">
         <Setter Property="Padding" Value="{DynamicResource BannerBorderPadding}" />
@@ -40,7 +39,6 @@
                                 <PathIcon
                                     Name="PART_BuildInIcon"
                                     Theme="{DynamicResource InnerPathIcon}"
-                                    Classes="Large"
                                     IsVisible="{TemplateBinding Icon, Converter={x:Static ObjectConverters.IsNull}}" />
                             </Panel>
                             <StackPanel Grid.Column="1" Spacing="2">
@@ -68,13 +66,7 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^.Bordered">
-            <Setter Property="CornerRadius" Value="{DynamicResource BannerCornerRadius}" />
-        </Style>
         <Style Selector="^[Type=Information]">
-            <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="BorderBrush" Value="{DynamicResource BannerInformationBorderBrush}" />
-            </Style>
             <Style Selector="^ /template/ Border#PART_Container">
                 <Setter Property="Background" Value="{DynamicResource BannerInformationBackground}" />
             </Style>
@@ -84,9 +76,6 @@
             </Style>
         </Style>
         <Style Selector="^[Type=Success]">
-            <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="BorderBrush" Value="{DynamicResource BannerSuccessBorderBrush}" />
-            </Style>
             <Style Selector="^ /template/ Border#PART_Container">
                 <Setter Property="Background" Value="{DynamicResource BannerSuccessBackground}" />
             </Style>
@@ -96,9 +85,6 @@
             </Style>
         </Style>
         <Style Selector="^[Type=Warning]">
-            <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="BorderBrush" Value="{DynamicResource BannerWarningBorderBrush}" />
-            </Style>
             <Style Selector="^ /template/ Border#PART_Container">
                 <Setter Property="Background" Value="{DynamicResource BannerWarningBackground}" />
             </Style>
@@ -108,9 +94,6 @@
             </Style>
         </Style>
         <Style Selector="^[Type=Error]">
-            <Style Selector="^.Bordered /template/ Border#PART_Container">
-                <Setter Property="BorderBrush" Value="{DynamicResource BannerErrorBorderBrush}" />
-            </Style>
             <Style Selector="^ /template/ Border#PART_Container">
                 <Setter Property="Background" Value="{DynamicResource BannerErrorBackground}" />
             </Style>

@@ -14,7 +14,6 @@
         <ResourceInclude Source="Drawer.axaml" />
         <ResourceInclude Source="DualBadge.axaml" />
         <ResourceInclude Source="IconButton.axaml" />
-        <ResourceInclude Source="MarkdownLine.axaml" />
         <ResourceInclude Source="MessageBox.axaml" />
         <ResourceInclude Source="NavigationMenu.axaml" />
         <ResourceInclude Source="Notification.axaml" />
@@ -24,7 +23,6 @@
         <ResourceInclude Source="Resizer.axaml" />
         <ResourceInclude Source="ScrollToButton.axaml" />
         <ResourceInclude Source="TagInput.axaml" />
-        <ResourceInclude Source="Skeleton.axaml" />
         <ResourceInclude Source="ThemeSelector.axaml" />
         <ResourceInclude Source="Toast.axaml" />
         <ResourceInclude Source="ToolBar.axaml" />

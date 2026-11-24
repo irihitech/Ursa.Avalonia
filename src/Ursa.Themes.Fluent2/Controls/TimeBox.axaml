@@ -14,13 +14,13 @@
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
-        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="Background" Value="{DynamicResource TextControlBackground}" />
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
-        <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
-        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextControlSelectionHighlightColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TimeBox">
                 <Border
@@ -149,12 +149,12 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:focus-within">
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushFocused}" />
         </Style>
         <Style Selector="^:disabled">
-            <Setter Property="Background" Value="{DynamicResource TextBoxDisabledBackground}" />
-            <Setter Property="Foreground" Value="{DynamicResource TextBoxDisabledForeground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDisabledBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource TextControlBackgroundDisabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextControlForegroundDisabled}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushDisabled}" />
         </Style>
         <Style Selector="^[DragOrientation=Horizontal]">
             <Style Selector="^/template/ Panel">

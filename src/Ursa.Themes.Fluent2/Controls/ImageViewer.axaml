@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:ImageViewer}" TargetType="u:ImageViewer">
-        <Setter Property="Background" Value="{DynamicResource LayerFillColorDefault}" />
+        <Setter Property="Background" Value="{DynamicResource LayerFillColorDefaultBrush}" />
         <Setter Property="Focusable" Value="True" />
 
         <Setter Property="Template">

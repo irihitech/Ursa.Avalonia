@@ -4,12 +4,12 @@
     xmlns:u="https://irihi.tech/ursa"
     xmlns:iri="https://irihi.tech/shared"
     xmlns:converters="using:Avalonia.Controls.Converters">
-    <converters:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
+    <converters:PlatformKeyGestureConverter x:Key="UrsaFluent2KeyGestureConverter" />
 
     <ControlTheme x:Key="{x:Type u:KeyGestureInput}" TargetType="u:KeyGestureInput">
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
-        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource TextControlBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -33,7 +33,7 @@
                                 DockPanel.Dock="Left"
                                 VerticalAlignment="Stretch"
                                 VerticalContentAlignment="Center"
-                                Foreground="{DynamicResource TextBoxInnerForeground}"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                                 IsVisible="{Binding Path=InnerLeftContent, RelativeSource={RelativeSource TemplatedParent},
                                     Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <ContentPresenter
@@ -43,14 +43,14 @@
                                 Padding="{TemplateBinding Padding, Converter={iri:ThicknessMixerConverter Left}}"
                                 VerticalAlignment="Stretch"
                                 VerticalContentAlignment="Center"
-                                Foreground="{DynamicResource TextBoxInnerForeground}"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                                 IsVisible="{Binding Path=InnerRightContent, RelativeSource={RelativeSource TemplatedParent},
                                     Converter={x:Static ObjectConverters.IsNotNull}}" />
                             <SelectableTextBlock
                                 Grid.Column="1"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Text="{TemplateBinding Gesture,Converter={StaticResource KeyGestureConverter}}" />
+                                Text="{TemplateBinding Gesture,Converter={StaticResource UrsaFluent2KeyGestureConverter}}" />
                             <Button
                                 Grid.Column="1"
                                 Name="PART_ClearButton"
@@ -66,20 +66,20 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#Background">
-            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxPointeroverBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource TextControlBackgroundPointerOver}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushPointerOver}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#Background">
-            <Setter Property="Background" Value="{DynamicResource TextBoxPressedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource TextControlBackgroundFocused}" />
         </Style>
         <Style Selector="^:focus /template/ Border#Background">
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushFocused}" />
         </Style>
         <Style Selector="^:focus-within /template/ Border#Background">
-            <Setter Property="Background" Value="{DynamicResource TextBoxPressedBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource TextControlBackgroundFocused}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushFocused}" />
         </Style>
-        <Style Selector="^:not(:empty).clearButton, ^:not(:empty).ClearButton">
+        <Style Selector="^:not(:empty).clearButton">
             <Style Selector="^:focus /template/ Button#PART_ClearButton">
                 <Setter Property="IsVisible" Value="True" />
             </Style>

@@ -106,7 +106,7 @@
                         <ToggleButton
                             Name="ExpanderHeader"
                             Margin="1,0,0,0"
-                            Background="{DynamicResource ToggleButtonDefaultBackground}"
+                            Background="{DynamicResource ControlFillColorDefaultBrush}"
                             CornerRadius="{TemplateBinding CornerRadius,
                                                            Converter={iri:CornerRadiusMixerConverter Right}}"
                             DockPanel.Dock="Right"
@@ -133,7 +133,7 @@
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
-                        Foreground="{DynamicResource ExpanderContentForeground}"
+                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                         IsVisible="{TemplateBinding IsExpanded,
                                                     Mode=TwoWay}" />
                 </DockPanel>

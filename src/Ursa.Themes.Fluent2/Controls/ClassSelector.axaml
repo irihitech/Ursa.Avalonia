@@ -80,19 +80,19 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover">
-            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPointeroverForeground}" />
-            <Setter Property="Background" Value="{DynamicResource ComboBoxItemPointeroverBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemForegroundPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource ComboBoxItemBackgroundPointerOver}" />
         </Style>
         <Style Selector="^:pressed">
-            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemPressedForeground}" />
-            <Setter Property="Background" Value="{DynamicResource ComboBoxItemPressedBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxItemForegroundPressed}" />
+            <Setter Property="Background" Value="{DynamicResource ComboBoxItemBackgroundPressed}" />
         </Style>
         <Style Selector="^:selected /template/ PathIcon#CheckGlyph">
             <Setter Property="Opacity" Value="1" />
         </Style>
         <Style Selector="^:disabled">
-            <Setter Property="Foreground" Value="{DynamicResource ListBoxItemDisabledForeground}" />
-            <Setter Property="Background" Value="{DynamicResource ListBoxItemDisabledBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorDisabledBrush}" />
+            <Setter Property="Background" Value="{DynamicResource SubtleFillColorDisabledBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

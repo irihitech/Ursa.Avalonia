@@ -188,7 +188,7 @@
     <ControlTheme x:Key="{x:Type u:NumPadButton}" TargetType="u:NumPadButton">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Background" Value="{DynamicResource ButtonDefaultBackground}" />
+        <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
         <Setter Property="CornerRadius" Value="3" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:NumPadButton">
@@ -214,10 +214,10 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#PART_Background">
-            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_Background">
-            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource ControlFillColorTertiaryBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

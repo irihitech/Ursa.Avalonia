@@ -36,7 +36,6 @@
                             <DataTemplate DataType="Geometry">
                                 <PathIcon
                                     Theme="{StaticResource InnerPathIcon}"
-                                    Classes="Small"
                                     Data="{Binding}" />
                             </DataTemplate>
                         </ContentPresenter.DataTemplates>

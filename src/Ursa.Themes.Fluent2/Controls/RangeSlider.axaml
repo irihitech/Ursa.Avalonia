@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:u="https://irihi.tech/ursa">
     <ControlTheme x:Key="{x:Type u:RangeSlider}" TargetType="u:RangeSlider">
-        <Setter Property="Background" Value="{DynamicResource SliderTrackBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource SliderTrackForeground}" />
+        <Setter Property="Background" Value="{DynamicResource SliderTrackFill}" />
+        <Setter Property="Foreground" Value="{DynamicResource AccentFillColorDefaultBrush}" />
         <Setter Property="TrackWidth" Value="4" />
         <Style Selector="^:horizontal">
             <Setter Property="Template">
@@ -26,7 +26,7 @@
                                 Height="{DynamicResource SliderTickHorizontalHeight}"
                                 Margin="0,0,0,4"
                                 VerticalAlignment="Bottom"
-                                Fill="{DynamicResource SliderTickForeground}"
+                                Fill="{DynamicResource TextFillColorSecondaryBrush}"
                                 IsVisible="False"
                                 Maximum="{TemplateBinding u:RangeSlider.Maximum}"
                                 Minimum="{TemplateBinding u:RangeSlider.Minimum}"
@@ -40,7 +40,7 @@
                                 Height="{DynamicResource SliderTickHorizontalHeight}"
                                 Margin="0,4,0,0"
                                 VerticalAlignment="Top"
-                                Fill="{DynamicResource SliderTickForeground}"
+                                Fill="{DynamicResource TextFillColorSecondaryBrush}"
                                 IsVisible="False"
                                 Maximum="{TemplateBinding u:RangeSlider.Maximum}"
                                 Minimum="{TemplateBinding u:RangeSlider.Minimum}"
@@ -70,7 +70,7 @@
                                     <Thumb
                                         Width="{DynamicResource SliderHorizontalThumbWidth}"
                                         Height="{DynamicResource SliderHorizontalThumbHeight}"
-                                        Theme="{DynamicResource SliderThumbTheme}" />
+                                        Theme="{DynamicResource FluentSliderThumbTheme}" />
                                 </u:RangeTrack.LowerThumb>
                                 <u:RangeTrack.InnerSection>
                                     <Border
@@ -83,7 +83,7 @@
                                     <Thumb
                                         Width="{DynamicResource SliderHorizontalThumbWidth}"
                                         Height="{DynamicResource SliderHorizontalThumbHeight}"
-                                        Theme="{DynamicResource SliderThumbTheme}" />
+                                        Theme="{DynamicResource FluentSliderThumbTheme}" />
                                 </u:RangeTrack.UpperThumb>
                                 <u:RangeTrack.UpperSection>
                                     <Border
@@ -118,7 +118,7 @@
                                 Width="{DynamicResource SliderTickVerticalWidth}"
                                 Margin="0,0,4,0"
                                 HorizontalAlignment="Right"
-                                Fill="{DynamicResource SliderTickForeground}"
+                                Fill="{DynamicResource TextFillColorSecondaryBrush}"
                                 IsVisible="False"
                                 Maximum="{TemplateBinding u:RangeSlider.Maximum}"
                                 Minimum="{TemplateBinding u:RangeSlider.Minimum}"
@@ -132,7 +132,7 @@
                                 Width="{DynamicResource SliderTickVerticalWidth}"
                                 Margin="4,0,0,0"
                                 HorizontalAlignment="Left"
-                                Fill="{DynamicResource SliderTickForeground}"
+                                Fill="{DynamicResource TextFillColorSecondaryBrush}"
                                 IsVisible="False"
                                 Maximum="{TemplateBinding u:RangeSlider.Maximum}"
                                 Minimum="{TemplateBinding u:RangeSlider.Minimum}"
@@ -162,7 +162,7 @@
                                     <Thumb
                                         Width="{DynamicResource SliderVerticalThumbWidth}"
                                         Height="{DynamicResource SliderVerticalThumbHeight}"
-                                        Theme="{DynamicResource SliderThumbTheme}" />
+                                        Theme="{DynamicResource FluentSliderThumbTheme}" />
                                 </u:RangeTrack.LowerThumb>
                                 <u:RangeTrack.InnerSection>
                                     <Border
@@ -175,7 +175,7 @@
                                     <Thumb
                                         Width="{DynamicResource SliderVerticalThumbWidth}"
                                         Height="{DynamicResource SliderVerticalThumbHeight}"
-                                        Theme="{DynamicResource SliderThumbTheme}" />
+                                        Theme="{DynamicResource FluentSliderThumbTheme}" />
                                 </u:RangeTrack.UpperThumb>
                                 <u:RangeTrack.UpperSection>
                                     <Border
@@ -207,20 +207,20 @@
         </Style>
 
         <Style Selector="^:error /template/ Thumb#thumb">
-            <Setter Property="BorderBrush" Value="{DynamicResource DataValidationErrorsSelectedBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SystemFillColorCriticalBrush}" />
         </Style>
 
         <Style Selector="^:disabled">
             <Style Selector="^ /template/ Border#PART_InnerSection">
-                <Setter Property="Background" Value="{DynamicResource SliderTrackDisabledForeground}" />
+                <Setter Property="Background" Value="{DynamicResource SliderTrackValueFillDisabled}" />
             </Style>
 
             <Style Selector="^ /template/ Border#PART_UpperSection, ^ /template/ Border#PART_LowerSection">
-                <Setter Property="Background" Value="{DynamicResource SliderTrackDisabledBackground}" />
+                <Setter Property="Background" Value="{DynamicResource ControlStrongFillColorDisabledBrush}" />
             </Style>
 
             <Style Selector="^ /template/ Thumb">
-                <Setter Property="BorderBrush" Value="{DynamicResource SliderThumbDisabledBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource ControlStrongStrokeColorDisabledBrush}" />
             </Style>
         </Style>
     </ControlTheme>

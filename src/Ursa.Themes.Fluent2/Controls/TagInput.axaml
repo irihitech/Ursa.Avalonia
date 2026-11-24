@@ -8,15 +8,15 @@
     <ControlTheme x:Key="{x:Type u:TagInput}" TargetType="u:TagInput">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
-        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextBoxPlaceholderForeground}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource TextControlPlaceholderForeground}" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:TagInput">
                 <Border
                     Name="PART_RootBorder"
                     VerticalAlignment="Stretch"
-                    Background="{DynamicResource TextBoxDefaultBackground}"
-                    BorderBrush="{DynamicResource TextBoxDefaultBorderBrush}"
+                    Background="{DynamicResource TextControlBackground}"
+                    BorderBrush="{DynamicResource TextControlBorderBrush}"
                     BorderThickness="{DynamicResource TextBoxBorderThickness}"
                     CornerRadius="{DynamicResource TextBoxDefaultCornerRadius}">
                     <Panel HorizontalAlignment="Stretch">
@@ -52,22 +52,22 @@
             <Setter Property="IsVisible" Value="True" />
         </Style>
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxPointeroverBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource TextControlBackgroundPointerOver}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushPointerOver}" />
         </Style>
         <Style Selector="^:focus-within /template/ Border#PART_BackgroundBorder">
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushFocused}" />
         </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="TagInputTextBoxTheme" TargetType="TextBox">
-        <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
-        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
-        <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
-        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextControlForeground}" />
+        <Setter Property="Background" Value="{DynamicResource TextControlBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextControlSelectionHighlightColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="Cursor" Value="Ibeam" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True" />
@@ -141,7 +141,7 @@
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
-                            FontSize="12"
+                            FontSize="{DynamicResource UrsaFluent2FontSizeSmall}"
                             Foreground="{TemplateBinding Foreground}"
                             TextTrimming="CharacterEllipsis" />
                     </DockPanel>

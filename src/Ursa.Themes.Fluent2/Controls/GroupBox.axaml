@@ -6,7 +6,7 @@
         <Setter Property="Padding" Value="{DynamicResource GroupBoxPadding}" />
         <Setter Property="Background" Value="{DynamicResource GroupBoxBackground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource GroupBoxBorderBrush}" />
-        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimary}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
         <Setter Property="BorderThickness" Value="{DynamicResource GroupBoxBorderThickness}" />
         <Setter Property="Template">

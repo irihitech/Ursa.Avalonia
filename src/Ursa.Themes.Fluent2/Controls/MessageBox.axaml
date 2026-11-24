@@ -32,10 +32,10 @@
     <ControlTheme x:Key="{x:Type u:MessageBoxWindow}" TargetType="u:MessageBoxWindow">
         <Setter Property="Title" Value="{x:Null}" />
         <Setter Property="Background" Value="{DynamicResource MessageBoxBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource WindowBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource ThicknessCardBorderThickness}" />
-        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource SolidBackgroundFillColorBaseBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="Padding" Value="24" />
@@ -74,14 +74,13 @@
                                     Name="PART_Icon"
                                     Grid.Column="0"
                                     Theme="{StaticResource InnerPathIcon}"
-                                    Classes="ExtraLarge"
                                     Margin="0,0,8,0"
                                     VerticalAlignment="Center"
                                     IsHitTestVisible="False" />
                                 <TextBlock
                                     Grid.Column="1"
                                     VerticalAlignment="Center"
-                                    FontSize="16"
+                                    FontSize="{DynamicResource UrsaFluent2HeaderFontSizeSmall}"
                                     FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     IsHitTestVisible="False"
                                     Text="{TemplateBinding Title}"
@@ -141,13 +140,13 @@
             <Setter Property="Grid.Column" Value="2" />
             <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
             <Setter Property="Grid.Column" Value="3" />
             <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="False" />
@@ -195,12 +194,11 @@
                     Focusable="True"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Classes="Shadow"
                     ClipToBounds="False"
                     Background="{DynamicResource MessageBoxBackground}"
                     CornerRadius="{TemplateBinding CornerRadius}"
                     IsHitTestVisible="True"
-                    Theme="{DynamicResource CardBorder}">
+                    Theme="{DynamicResource UrsaFluent2CardBorder}">
                     <Border ClipToBounds="True" CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid RowDefinitions="Auto, *, Auto">
                             <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
@@ -213,7 +211,6 @@
                                     Name="PART_Icon"
                                     Grid.Column="0"
                                     Theme="{StaticResource InnerPathIcon}"
-                                    Classes="ExtraLarge"
                                     Margin="24,24,8,0"
                                     VerticalAlignment="Center"
                                     IsHitTestVisible="False" />
@@ -222,7 +219,7 @@
                                     Grid.Column="1"
                                     Margin="0,24,0,0"
                                     VerticalAlignment="Center"
-                                    FontSize="16"
+                                    FontSize="{DynamicResource UrsaFluent2HeaderFontSizeSmall}"
                                     FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     IsHitTestVisible="False"
                                     Text="{TemplateBinding Title}"
@@ -294,13 +291,13 @@
             <Setter Property="Grid.Column" Value="2" />
             <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
             <Setter Property="Grid.Column" Value="3" />
             <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^[MessageIcon=None] /template/ PathIcon#PART_Icon">
             <Setter Property="IsVisible" Value="False" />

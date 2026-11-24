@@ -10,7 +10,7 @@
                 <u:ToastCard>
                     Hello, Ursa!
                 </u:ToastCard>
-                <u:ToastCard NotificationType="Success" Classes="Light">
+                <u:ToastCard NotificationType="Success">
                     <u:Toast>
                         Hello, Ursa!
                     </u:Toast>
@@ -59,7 +59,6 @@
                                 <PathIcon
                                     x:Name="ToastIcon"
                                     Theme="{StaticResource InnerPathIcon}"
-                                    Classes="Large"
                                     Margin="{DynamicResource ToastCardIconMargin}"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding ShowIcon}"
@@ -186,40 +185,20 @@
         </Style>
 
         <Style Selector="^:information /template/ PathIcon#ToastIcon">
-            <Setter Property="Foreground" Value="{DynamicResource NotificationCardInformationIconForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorAttentionBrush}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardInformationIconPathData}" />
         </Style>
         <Style Selector="^:success /template/ PathIcon#ToastIcon">
-            <Setter Property="Foreground" Value="{DynamicResource NotificationCardSuccessIconForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorSuccessBrush}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardSuccessIconPathData}" />
         </Style>
         <Style Selector="^:warning /template/ PathIcon#ToastIcon">
-            <Setter Property="Foreground" Value="{DynamicResource NotificationCardWarningIconForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCautionBrush}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardWarningIconPathData}" />
         </Style>
         <Style Selector="^:error /template/ PathIcon#ToastIcon">
-            <Setter Property="Foreground" Value="{DynamicResource NotificationCardErrorIconForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCriticalBrush}" />
             <Setter Property="Data" Value="{DynamicResource NotificationCardErrorIconPathData}" />
-        </Style>
-
-        <Style Selector="^.Light">
-            <Setter Property="Background" Value="{DynamicResource NotificationCardLightBackground}" />
-            <Style Selector="^:information /template/ Border#PART_RootBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightInformationBorderBrush}" />
-                <Setter Property="Background" Value="{DynamicResource NotificationCardLightInformationBackground}" />
-            </Style>
-            <Style Selector="^:success /template/ Border#PART_RootBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightSuccessBorderBrush}" />
-                <Setter Property="Background" Value="{DynamicResource NotificationCardLightSuccessBackground}" />
-            </Style>
-            <Style Selector="^:warning /template/ Border#PART_RootBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightWarningBorderBrush}" />
-                <Setter Property="Background" Value="{DynamicResource NotificationCardLightWarningBackground}" />
-            </Style>
-            <Style Selector="^:error /template/ Border#PART_RootBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource NotificationCardLightErrorBorderBrush}" />
-                <Setter Property="Background" Value="{DynamicResource NotificationCardLightErrorBackground}" />
-            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

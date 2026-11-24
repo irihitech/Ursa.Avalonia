@@ -30,12 +30,11 @@
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         Background="{DynamicResource DialogBackground}"
                         BoxShadow="{DynamicResource DialogBoxShadow}"
-                        Classes="Shadow"
                         ClipToBounds="False"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Focusable="True"
                         IsHitTestVisible="True"
-                        Theme="{DynamicResource CardBorder}">
+                        Theme="{DynamicResource UrsaFluent2CardBorder}">
                         <Border ClipToBounds="True" CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid RowDefinitions="Auto, *">
                                 <ScrollViewer
@@ -73,7 +72,7 @@
                 <Setter Property="VerticalAlignment" Value="Stretch" />
                 <Setter Property="Theme" Value="{x:Null}" />
                 <Setter Property="Margin" Value="0" />
-                <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
+                <Setter Property="Background" Value="{DynamicResource AcrylicInAppFillColorDefaultBrush}" />
             </Style>
         </Style>
         <Style Selector="^ /template/ Panel#PART_TitleArea">
@@ -153,12 +152,11 @@
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         Background="{DynamicResource DialogBackground}"
                         BoxShadow="{DynamicResource DialogBoxShadow}"
-                        Classes="Shadow"
                         ClipToBounds="False"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Focusable="True"
                         IsHitTestVisible="True"
-                        Theme="{DynamicResource CardBorder}">
+                        Theme="{DynamicResource UrsaFluent2CardBorder}">
                         <Border ClipToBounds="True" CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid RowDefinitions="Auto, *, Auto">
                                 <ScrollViewer
@@ -181,14 +179,13 @@
                                         Grid.Column="0"
                                         Margin="24,24,8,0"
                                         VerticalAlignment="Center"
-                                        Classes="ExtraLarge"
                                         Theme="{StaticResource InnerPathIcon}" />
                                     <TextBlock
                                         Name="PART_Title"
                                         Grid.Column="1"
                                         Margin="0,24,0,0"
                                         VerticalAlignment="Center"
-                                        FontSize="16"
+                                        FontSize="{DynamicResource UrsaFluent2HeaderFontSizeSmall}"
                                         FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                         IsHitTestVisible="False"
                                         IsVisible="{TemplateBinding Title,
@@ -229,7 +226,7 @@
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="Theme" Value="{x:Null}" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="Background" Value="{DynamicResource BorderCardBackground}" />
+            <Setter Property="Background" Value="{DynamicResource AcrylicInAppFillColorDefaultBrush}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_CancelButton">
             <Setter Property="Grid.Column" Value="0" />
@@ -245,13 +242,13 @@
             <Setter Property="Grid.Column" Value="2" />
             <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
             <Setter Property="Grid.Column" Value="3" />
             <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^[Mode=None]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
@@ -300,11 +297,11 @@
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning" />
-                <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+                <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning" />
-                <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+                <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Tertiary" />
@@ -432,10 +429,10 @@
     <ControlTheme x:Key="{x:Type u:CustomDialogWindow}" TargetType="u:CustomDialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
         <Setter Property="Background" Value="{DynamicResource DialogBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource WindowBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource ThicknessCardBorderThickness}" />
-        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource SolidBackgroundFillColorBaseBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="Padding" Value="48 24" />
@@ -478,7 +475,7 @@
                                 <TextBlock
                                     Grid.Column="0"
                                     Margin="24,24,0,0"
-                                    FontSize="16"
+                                    FontSize="{DynamicResource UrsaFluent2HeaderFontSizeSmall}"
                                     FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     Text="{TemplateBinding Title}"
                                     TextTrimming="CharacterEllipsis"
@@ -501,10 +498,10 @@
     <ControlTheme x:Key="{x:Type u:StandardDialogWindow}" TargetType="u:StandardDialogWindow">
         <Setter Property="Title" Value="{x:Null}" />
         <Setter Property="Background" Value="{DynamicResource DialogBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource WindowBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
         <Setter Property="BorderThickness" Value="{DynamicResource ThicknessCardBorderThickness}" />
-        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource WindowDefaultBackground}" />
-        <Setter Property="Foreground" Value="{DynamicResource WindowDefaultForeground}" />
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource SolidBackgroundFillColorBaseBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
         <Setter Property="Padding" Value="48 24" />
@@ -551,14 +548,13 @@
                                     Grid.Column="0"
                                     Margin="24,24,8,0"
                                     VerticalAlignment="Center"
-                                    Classes="ExtraLarge"
                                     Theme="{StaticResource InnerPathIcon}" />
                                 <TextBlock
                                     Name="PART_Title"
                                     Grid.Column="1"
                                     Margin="0,24,0,0"
                                     VerticalAlignment="Center"
-                                    FontSize="16"
+                                    FontSize="{DynamicResource UrsaFluent2HeaderFontSizeSmall}"
                                     FontWeight="{DynamicResource TextBlockTitleFontWeight}"
                                     IsHitTestVisible="False"
                                     IsVisible="{TemplateBinding Title,
@@ -604,13 +600,13 @@
             <Setter Property="Grid.Column" Value="2" />
             <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
             <Setter Property="Grid.Column" Value="3" />
             <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
-            <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^[Mode=None]">
             <Style Selector="^ /template/ PathIcon#PART_Icon">
@@ -659,11 +655,11 @@
             </Style>
             <Style Selector="^ /template/ Button#PART_OKButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning" />
-                <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+                <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_YesButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Warning" />
-                <Setter Property="Theme" Value="{DynamicResource SolidButton}" />
+                <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
             </Style>
             <Style Selector="^ /template/ Button#PART_NoButton">
                 <Setter Property="iri:ClassHelper.Classes" Value="Tertiary" />

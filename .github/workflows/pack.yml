@@ -15,6 +15,10 @@ on:
         description: 'Pack Ursa.Themes.Semi'
         default: true
         type: boolean
+      Ursa_Themes_Fluent2:
+        description: 'Pack Ursa.Themes.Fluent2'
+        default: true
+        type: boolean
       PrismExtension:
         description: 'Pack Prism Extension'
         default: false
@@ -32,6 +36,9 @@ on:
         default: true
         type: boolean
       Ursa_Themes_Semi:
+        default: true
+        type: boolean
+      Ursa_Themes_Fluent2:
         default: true
         type: boolean
       PrismExtension:
@@ -58,6 +65,10 @@ jobs:
       - name: Pack Ursa.Themes.Semi
         if: ${{ inputs.Ursa_Themes_Semi }}
         run: dotnet pack src/Ursa.Themes.Semi -o nugets
+
+      - name: Pack Ursa.Themes.Fluent2
+        if: ${{ inputs.Ursa_Themes_Fluent2 }}
+        run: dotnet pack src/Ursa.Themes.Fluent2 -o nugets
 
       - name: Pack Prism Extension
         if: ${{ inputs.PrismExtension }}

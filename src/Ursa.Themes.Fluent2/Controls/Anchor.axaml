@@ -23,15 +23,11 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^.Muted /template/ Rectangle#PART_Pipe">
-            <Setter Property="Fill" Value="Transparent" />
-        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type u:AnchorItem}" TargetType="u:AnchorItem">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="iri:ClassHelper.ClassSource" Value="{Binding $parent[u:Anchor]}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="u:AnchorItem">
                 <StackPanel>
@@ -65,25 +61,12 @@
         <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
             <Setter Property="MinHeight" Value="{DynamicResource AnchorDefaultHeight}" />
         </Style>
-        <Style Selector="^.Small /template/ ContentPresenter#PART_HeaderPresenter">
-            <Setter Property="MinHeight" Value="{DynamicResource AnchorSmallHeight}" />
-            <Setter Property="FontSize" Value="{DynamicResource AnchorSmallFontSize}" />
-        </Style>
         <Style Selector="^:selected">
             <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource AnchorSelectedForeground}" />
             </Style>
             <Style Selector="^ /template/ Border#PART_Pipe">
                 <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedBackground}" />
-            </Style>
-            <Style Selector="^.Primary /template/ Border#PART_Pipe">
-                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedPrimaryBackground}" />
-            </Style>
-            <Style Selector="^.Tertiary /template/ Border#PART_Pipe">
-                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedTertiaryBackground}" />
-            </Style>
-            <Style Selector="^.Muted /template/ Border#PART_Pipe">
-                <Setter Property="Background" Value="Transparent" />
             </Style>
         </Style>
     </ControlTheme>

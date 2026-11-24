@@ -1,5 +1,4 @@
 <Styles x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StyleInclude Source="Breadcrumb.axaml" />
     <StyleInclude Source="ButtonGroup.axaml" />
     <StyleInclude Source="PinCode.axaml" />
     <StyleInclude Source="Skeleton.axaml" />

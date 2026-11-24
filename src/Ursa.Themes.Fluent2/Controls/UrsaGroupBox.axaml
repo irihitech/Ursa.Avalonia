@@ -5,8 +5,8 @@
     <Setter Property="Padding" Value="{DynamicResource UrsaFluent2GroupBoxPadding}" />
     <Setter Property="CornerRadius" Value="{DynamicResource UrsaFluent2GroupBoxCornerRadius}" />
     <Setter Property="BorderThickness" Value="{DynamicResource UrsaFluent2GroupBoxBorderThickness}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefault}" />
-    <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
     <Setter Property="Template">
       <ControlTemplate>
         <u:GroupBoxBorder Background="{TemplateBinding Background}"

@@ -34,13 +34,13 @@
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="CornerRadius" Value="{DynamicResource TextBoxDefaultCornerRadius}" />
-        <Setter Property="Background" Value="{DynamicResource TextBoxDefaultBackground}" />
+        <Setter Property="Background" Value="{DynamicResource TextControlBackground}" />
         <Setter Property="MinHeight" Value="{DynamicResource TextBoxDefaultHeight}" />
         <Setter Property="BorderThickness" Value="{DynamicResource TextBoxBorderThickness}" />
-        <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBackground}" />
-        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBoxSelectionForeground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDefaultBorderBrush}" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBoxTextCaretBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextControlSelectionHighlightColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="ContextFlyout" Value="{DynamicResource IPv4BoxMenuFlyout}" />
         <Setter Property="FocusAdorner" Value="{x:Null}" />
         <Setter Property="Template">
@@ -113,20 +113,20 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#PART_Border">
-            <Setter Property="Background" Value="{DynamicResource TextBoxPointeroverBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxPointeroverBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource TextControlBackgroundPointerOver}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushPointerOver}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_Border">
-            <Setter Property="Background" Value="{DynamicResource IPv4BoxPressedBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource  TextBoxFocusBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource ControlFillColorInputActiveBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushFocused}" />
         </Style>
         <Style Selector="^:focus-within /template/ Border#PART_Border">
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushFocused}" />
         </Style>
         <Style Selector="^:disabled">
-            <Setter Property="Background" Value="{DynamicResource TextBoxDisabledBackground}" />
-            <Setter Property="Foreground" Value="{DynamicResource TextBoxDisabledForeground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxDisabledBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource TextControlBackgroundDisabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextControlForegroundDisabled}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushDisabled}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

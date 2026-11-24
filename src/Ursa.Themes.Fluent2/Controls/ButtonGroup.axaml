@@ -4,7 +4,7 @@
     xmlns:u="https://irihi.tech/ursa">
     <Design.PreviewWith>
         <StackPanel Margin="20">
-            <u:ButtonGroup Classes="Primary">
+            <u:ButtonGroup>
                 <Button Content="Hello" />
             </u:ButtonGroup>
         </StackPanel>

@@ -50,7 +50,7 @@
                                 Height="12"
                                 Margin="8"
                                 IsVisible="False"
-                                Fill="Gray" />
+                                Fill="{DynamicResource ControlStrongFillColorDefaultBrush}" />
                         </Panel>
                         <Rectangle
                             Grid.Row="1"
@@ -68,7 +68,7 @@
                         VerticalAlignment="Top"
                         Content="{TemplateBinding Header}"
                         ContentTemplate="{TemplateBinding HeaderTemplate}"
-                        FontSize="14"
+                        FontSize="{DynamicResource ControlContentThemeFontSize}"
                         Foreground="{DynamicResource TimelineHeaderForeground}" />
                     <ContentPresenter
                         Name="{x:Static u:TimelineItem.PART_Content}"
@@ -78,14 +78,14 @@
                         VerticalAlignment="Top"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
-                        TextElement.FontSize="12" />
+                        TextElement.FontSize="{DynamicResource UrsaFluent2FontSizeSmall}" />
                     <TextBlock
                         Name="{x:Static u:TimelineItem.PART_Time}"
                         Grid.Row="0"
                         Grid.Column="0"
                         Margin="8,2"
                         VerticalAlignment="Top"
-                        FontSize="12"
+                        FontSize="{DynamicResource UrsaFluent2FontSizeSmall}"
                         TextWrapping="Wrap">
                         <TextBlock.Text>
                             <MultiBinding Converter="{StaticResource FormatConverter}">
@@ -101,10 +101,10 @@
             <Setter Property="Fill" Value="Transparent" />
         </Style>
         <Style Selector="^ /template/ TextBlock#PART_Time">
-            <Setter Property="Foreground" Value="{DynamicResource TextBlockTertiaryForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorTertiaryBrush}" />
         </Style>
         <Style Selector="^ /template/ ContentPresenter#PART_Content">
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBlockTertiaryForeground}" />
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextFillColorTertiaryBrush}" />
         </Style>
         <Style Selector="^:empty-icon /template/ Ellipse#PART_DefaultIcon">
             <Setter Property="IsVisible" Value="True" />

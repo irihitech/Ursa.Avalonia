@@ -9,12 +9,12 @@
     </Design.PreviewWith>
 
     <ControlTheme x:Key="{x:Type u:MarkdownLine}" TargetType="{x:Type u:MarkdownLine}">
-        <Setter Property="Foreground" Value="{DynamicResource TextBlockDefaultForeground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="FontSize" Value="{DynamicResource TextBlockFontSize}" />
         <Setter Property="Cursor" Value="Ibeam" />
-        <Setter Property="SelectionBrush" Value="{DynamicResource TextBlockSelectionBackground}" />
-        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextBlockSelectionForeground}" />
-        <Setter Property="CodeBackground" Value="{DynamicResource TextBlockCodeBackground}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource TextControlSelectionHighlightColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Setter Property="CodeBackground" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
         <Setter Property="CodeFontFamily" Value="{DynamicResource CodeFontFamily}"></Setter>
     </ControlTheme>
 </ResourceDictionary>

@@ -394,7 +394,7 @@ public class ThemeSmokeTests
         var app = Application.Current!;
         Assert.True(app.TryGetResource("AccentFillColorDefaultBrush", variant, out var accent));
         var expected = Assert.IsAssignableFrom<ISolidColorBrush>(accent).Color;
-        foreach (var key in new[] { "BadgePrimaryBadgeBackground", "ButtonGroupSolidPrimaryBackground", "CalenderDaySelectedBackground" })
+        foreach (var key in new[] { "BadgePrimaryBadgeBackground", "ButtonGroupSolidPrimaryBackground", "CalendarDaySelectedBackground" })
         {
             Assert.True(app.TryGetResource(key, variant, out var actual), key);
             Assert.Equal(expected, Assert.IsAssignableFrom<ISolidColorBrush>(actual).Color);

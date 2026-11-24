@@ -11,64 +11,24 @@
             <ControlTemplate TargetType="u:ScrollToButton">
                 <Border
                     Name="PART_Background"
-                    Background="{DynamicResource ButtonDefaultBackground}"
+                    Background="{DynamicResource ControlFillColorDefaultBrush}"
                     CornerRadius="{DynamicResource ButtonCornerRadius}">
                     <PathIcon
                         Name="PART_Icon"
                         Margin="8"
                         Theme="{StaticResource InnerPathIcon}"
                         Data="{DynamicResource ScrollToButtonIconGlyph}"
-                        Foreground="{DynamicResource ButtonDefaultPrimaryForeground}" />
+                        Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
                 </Border>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#PART_Background">
-            <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultPointeroverBorderBrush}" />
-            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPointeroverBackground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_Background">
-            <Setter Property="BorderBrush" Value="{DynamicResource ButtonDefaultPressedBorderBrush}" />
-            <Setter Property="Background" Value="{DynamicResource ButtonDefaultPressedBackground}" />
-        </Style>
-        <Style Selector="^[Direction=Right] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(90deg)" />
-        </Style>
-        <Style Selector="^[Direction=Bottom] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(180deg)" />
-        </Style>
-        <Style Selector="^[Direction=Left] /template/ PathIcon#PART_Icon">
-            <Setter Property="RenderTransform" Value="rotate(270deg)" />
-        </Style>
-    </ControlTheme>
-
-
-    <ControlTheme x:Key="PrimaryScrollToButton" TargetType="u:ScrollToButton">
-        <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="VerticalAlignment" Value="Bottom" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Margin" Value="0, 0, 16, 16" />
-        <Setter Property="Template">
-            <ControlTemplate TargetType="u:ScrollToButton">
-                <Border
-                    Name="PART_Background"
-                    Background="{DynamicResource ButtonSolidPrimaryBackground}"
-                    CornerRadius="{DynamicResource ButtonCornerRadius}">
-                    <PathIcon
-                        Name="PART_Icon"
-                        Margin="8"
-                        Theme="{StaticResource InnerPathIcon}"
-                        Data="{DynamicResource ScrollToButtonIconGlyph}"
-                        Foreground="{DynamicResource ButtonSolidForeground}" />
-                </Border>
-            </ControlTemplate>
-        </Setter>
-        <Style Selector="^:pointerover /template/ Border#PART_Background">
-            <Setter Property="Background" Value="{DynamicResource ButtonSolidPrimaryPointeroverBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidPrimaryPointeroverBorderBrush}" />
-        </Style>
-        <Style Selector="^:pressed /template/ Border#PART_Background">
-            <Setter Property="Background" Value="{DynamicResource ButtonSolidPrimaryPressedBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource ButtonSolidPrimaryPressedBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}" />
+            <Setter Property="Background" Value="{DynamicResource ControlFillColorTertiaryBrush}" />
         </Style>
         <Style Selector="^[Direction=Right] /template/ PathIcon#PART_Icon">
             <Setter Property="RenderTransform" Value="rotate(90deg)" />

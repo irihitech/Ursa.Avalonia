@@ -15,6 +15,10 @@ on:
         description: 'Pack Ursa.Themes.Semi'
         default: true
         type: boolean
+      Ursa_Themes_Fluent2:
+        description: 'Pack Ursa.Themes.Fluent2'
+        default: true
+        type: boolean
       PrismExtension:
         description: 'Pack Prism Extension'
         default: false
@@ -31,6 +35,7 @@ jobs:
       Upload_to_NuGet: ${{ inputs.Upload_to_NuGet }}
       Ursa: ${{ inputs.Ursa }}
       Ursa_Themes_Semi: ${{ inputs.Ursa_Themes_Semi }}
+      Ursa_Themes_Fluent2: ${{ inputs.Ursa_Themes_Fluent2 }}
       PrismExtension: ${{ inputs.PrismExtension }}
       ReactiveUIExtension: ${{ inputs.ReactiveUIExtension }}
     secrets: inherit

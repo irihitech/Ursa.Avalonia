@@ -72,8 +72,5 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Style Selector="^.Small">
-            <Setter Property="Size" Value="{DynamicResource RatingSmallSize}" />
-        </Style>
     </ControlTheme>
 </ResourceDictionary>

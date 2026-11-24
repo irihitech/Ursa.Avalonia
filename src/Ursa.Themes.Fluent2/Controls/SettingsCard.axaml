@@ -20,7 +20,7 @@
               Content="{TemplateBinding Description}"
               ContentTemplate="{TemplateBinding DescriptionTemplate}"
               FontSize="{DynamicResource UrsaFluent2FontSizeSmall}"
-              Foreground="{DynamicResource TextFillColorSecondary}"
+              Foreground="{DynamicResource TextFillColorSecondaryBrush}"
               IsVisible="{TemplateBinding Description, Converter={x:Static ObjectConverters.IsNotNull}}"
               TextWrapping="Wrap" />
           <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
@@ -32,8 +32,8 @@
   <ControlTheme x:Key="{x:Type u:SettingsCard}" TargetType="u:SettingsCard">
     <Setter Property="MinHeight" Value="{DynamicResource UrsaFluent2SettingsCardMinHeight}" />
     <Setter Property="Padding" Value="{DynamicResource UrsaFluent2SettingsCardPadding}" />
-    <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefault}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefault}" />
+    <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="CornerRadius" Value="{DynamicResource UrsaFluent2SettingsCardCornerRadius}" />
     <Setter Property="Template">
@@ -79,7 +79,7 @@
                         Name="PART_Content"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
-                        Foreground="{DynamicResource TextFillColorPrimary}"
+                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                         IsVisible="{TemplateBinding Content, Converter={x:Static ObjectConverters.IsNotNull}}" />
                     <ContentPresenter
                         Name="PART_Trailing"
@@ -93,7 +93,7 @@
                       Content="{TemplateBinding Description}"
                       ContentTemplate="{TemplateBinding DescriptionTemplate}"
                       FontSize="{DynamicResource UrsaFluent2FontSizeSmall}"
-                      Foreground="{DynamicResource TextFillColorSecondary}"
+                      Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                       IsVisible="{TemplateBinding Description, Converter={x:Static ObjectConverters.IsNotNull}}"
                       TextWrapping="Wrap" />
                 </StackPanel>
@@ -107,7 +107,7 @@
                       Name="PART_Note"
                       Content="{TemplateBinding Note}"
                       ContentTemplate="{TemplateBinding NoteTemplate}"
-                      Foreground="{DynamicResource TextFillColorSecondary}"
+                      Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                       IsVisible="{TemplateBinding Note, Converter={x:Static ObjectConverters.IsNotNull}}" />
                   <ContentPresenter
                       Name="PART_Right"
@@ -118,7 +118,7 @@
                       Name="PART_Chevron"
                       Theme="{DynamicResource InnerPathIcon}"
                       Data="{DynamicResource UrsaFluent2IconChevronRight}"
-                      Foreground="{DynamicResource TextFillColorTertiary}"
+                      Foreground="{DynamicResource TextFillColorTertiaryBrush}"
                       IsVisible="False"
                       RenderTransformOrigin="50%,50%">
                     <PathIcon.Transitions>
@@ -136,7 +136,7 @@
                 IsVisible="{TemplateBinding IsExpanded}"
                 Background="{TemplateBinding Background}"
                 BackgroundSizing="OuterBorderEdge"
-                BorderBrush="{DynamicResource DividerStrokeColorDefault}"
+                BorderBrush="{DynamicResource DividerStrokeColorDefaultBrush}"
                 BorderThickness="0,1,0,0"
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Content="{TemplateBinding Detail}"
@@ -149,7 +149,7 @@
     <!--  Cards nested inside a detail host render as flat rows separated by hairlines.  -->
     <Style Selector="^ /template/ ContentPresenter#PART_DetailHost u|SettingsCard">
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefault}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefaultBrush}" />
       <Setter Property="BorderThickness" Value="0,1,0,0" />
       <Setter Property="CornerRadius" Value="0" />
       <Style Selector="^:nth-child(1)">
@@ -164,13 +164,13 @@
     </Style>
 
     <Style Selector="^:interactive:pointerover:not(:over-detail) /template/ Border#PART_Root">
-      <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondary}" />
+      <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
     </Style>
     <Style Selector="^:interactive:pressed:not(:over-detail) /template/ Border#PART_Root">
-      <Setter Property="Background" Value="{DynamicResource SubtleFillColorTertiary}" />
+      <Setter Property="Background" Value="{DynamicResource SubtleFillColorTertiaryBrush}" />
     </Style>
     <Style Selector="^:focus-visible /template/ Border#PART_Outer">
-      <Setter Property="BorderBrush" Value="{DynamicResource FocusStrokeColorOuter}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource FocusStrokeColorOuterBrush}" />
     </Style>
     <Style Selector="^:disabled">
       <Setter Property="Opacity" Value="0.55" />

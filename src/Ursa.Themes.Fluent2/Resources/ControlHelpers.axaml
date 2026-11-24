@@ -20,8 +20,8 @@
   <DataTemplate x:Key="UrsaFluent2CalendarNavigationIconTemplate" DataType="Geometry">
     <PathIcon
         Data="{Binding}"
-        Width="{DynamicResource CalenderViewPathIconWidth}"
-        Height="{DynamicResource CalenderViewPathIconHeight}" />
+        Width="{DynamicResource CalendarViewPathIconWidth}"
+        Height="{DynamicResource CalendarViewPathIconHeight}" />
   </DataTemplate>
   <ControlTheme x:Key="LooklessTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
     <Setter Property="Background" Value="Transparent" />
@@ -30,39 +30,53 @@
       <Setter Property="IsVisible" Value="False" />
     </Style>
   </ControlTheme>
-  <ControlTheme x:Key="NonErrorTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}" />
-  <ControlTheme x:Key="DateTimePickerItem" TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}" />
-  <ControlTheme x:Key="SplitButtonSpinner" TargetType="ButtonSpinner" BasedOn="{StaticResource {x:Type ButtonSpinner}}" />
-  <ControlTheme x:Key="BorderlessButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-    <Setter Property="Background" Value="Transparent" />
+  <ControlTheme x:Key="UrsaFluent2SubtleButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="Background" Value="{DynamicResource SubtleFillColorTransparentBrush}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Padding" Value="8,4" />
+    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
+    <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource SubtleFillColorTertiaryBrush}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
+    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource SubtleFillColorDisabledBrush}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
   </ControlTheme>
-  <ControlTheme x:Key="CaptionButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-    <Setter Property="MinWidth" Value="36" />
-    <Setter Property="MinHeight" Value="32" />
-    <Setter Property="Padding" Value="8" />
-    <Setter Property="Background" Value="Transparent" />
-    <Setter Property="BorderThickness" Value="0" />
+  <ControlTheme x:Key="UrsaFluent2AccentButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
+    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource AccentButtonBackground}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource AccentButtonForeground}" />
+    </Style>
+    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource AccentButtonBackgroundPointerOver}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrushPointerOver}" />
+      <Setter Property="Foreground" Value="{DynamicResource AccentButtonForegroundPointerOver}" />
+    </Style>
+    <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource AccentButtonBackgroundPressed}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrushPressed}" />
+      <Setter Property="Foreground" Value="{DynamicResource AccentButtonForegroundPressed}" />
+    </Style>
+    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource AccentButtonBackgroundDisabled}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrushDisabled}" />
+      <Setter Property="Foreground" Value="{DynamicResource AccentButtonForegroundDisabled}" />
+    </Style>
   </ControlTheme>
-  <ControlTheme x:Key="SolidButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-    <Setter Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimary}" />
-    <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
-  </ControlTheme>
-  <ControlTheme x:Key="CardBorder" TargetType="Border">
-    <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefault}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefault}" />
+  <ControlTheme x:Key="UrsaFluent2CardBorder" TargetType="Border">
+    <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource OverlayCornerRadius}" />
   </ControlTheme>
-  <ControlTheme x:Key="AdornerLayerBorder" TargetType="Border">
-    <Setter Property="BorderBrush" Value="{DynamicResource FocusStrokeColorOuter}" />
-    <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
-  </ControlTheme>
-  <ControlTheme x:Key="SliderThumbTheme" TargetType="Thumb" BasedOn="{StaticResource FluentSliderThumbTheme}" />
   <ControlTheme x:Key="ToggleButtonTreeViewItemIconButton" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
     <Setter Property="Width" Value="24" />
     <Setter Property="Height" Value="24" />

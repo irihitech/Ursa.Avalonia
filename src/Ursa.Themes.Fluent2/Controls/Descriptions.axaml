@@ -4,7 +4,7 @@
                     xmlns:iri="https://irihi.tech/shared">
     <Design.PreviewWith>
         <StackPanel Margin="20" Spacing="20">
-            <Border Theme="{DynamicResource CardBorder}">
+            <Border Theme="{DynamicResource UrsaFluent2CardBorder}">
                 <u:Descriptions Orientation="Horizontal" LabelPosition="Top" ItemAlignment="Center">
                     <u:DescriptionsItem Label="实际用户数量" Content="1,480,000" />
                     <u:DescriptionsItem Label="7天留存" Content="98%" />
@@ -110,7 +110,6 @@
             </Style>
         </Style>
         <Style Selector="^:vertical">
-            <Setter Property="iri:ClassHelper.ClassSource" Value="{Binding $parent[u:Descriptions]}" />
             <Setter Property="Template">
                 <ControlTemplate TargetType="u:DescriptionsItem">
                     <StackPanel>
@@ -137,26 +136,6 @@
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Margin" Value="{DynamicResource DescriptionsValueMediumMargin}" />
                 <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueMediumFontSize}" />
-            </Style>
-            <Style Selector="^.Small">
-                <Style Selector="^ /template/ Label#PART_Label">
-                    <Setter Property="Margin" Value="{DynamicResource DescriptionsKeySmallMargin}" />
-                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsKeySmallFontSize}" />
-                </Style>
-                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                    <Setter Property="Margin" Value="{DynamicResource DescriptionsValueSmallMargin}" />
-                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueSmallFontSize}" />
-                </Style>
-            </Style>
-            <Style Selector="^.Large">
-                <Style Selector="^ /template/ Label#PART_Label">
-                    <Setter Property="Margin" Value="{DynamicResource DescriptionsKeyLargeMargin}" />
-                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsKeyLargeFontSize}" />
-                </Style>
-                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                    <Setter Property="Margin" Value="{DynamicResource DescriptionsValueLargeMargin}" />
-                    <Setter Property="FontSize" Value="{DynamicResource DescriptionsValueLargeFontSize}" />
-                </Style>
             </Style>
         </Style>
     </ControlTheme>
