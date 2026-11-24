@@ -20,6 +20,40 @@ namespace Ursa.Themes.Fluent2.Tests;
 public class ThemeSmokeTests
 {
     [AvaloniaTheory]
+    [InlineData(DialogMode.None)]
+    [InlineData(DialogMode.Info)]
+    [InlineData(DialogMode.Warning)]
+    [InlineData(DialogMode.Error)]
+    [InlineData(DialogMode.Question)]
+    [InlineData(DialogMode.Success)]
+    public void Dialog_primary_buttons_use_official_accent_button(DialogMode mode)
+    {
+        var dialog = new StandardDialogControl { Mode = mode, Buttons = DialogButton.OKCancel, Content = "Body" };
+        var messageBox = new MessageBoxControl { Buttons = MessageBoxButton.OKCancel, Content = "Body" };
+        var window = new Window { Content = new StackPanel { Children = { dialog, messageBox } } };
+        try
+        {
+            window.Show();
+            Dispatcher.UIThread.RunJobs();
+            Assert.True(Application.Current!.TryGetResource("AccentButtonBackground", window.ActualThemeVariant, out var accent));
+            foreach (var host in new Control[] { dialog, messageBox })
+            {
+                var buttons = host.GetVisualDescendants().OfType<Button>().ToList();
+                var ok = buttons.Single(b => b.Name == "PART_OKButton");
+                var cancel = buttons.Single(b => b.Name == "PART_CancelButton");
+                Assert.Contains("accent", ok.Classes);
+                Assert.DoesNotContain("accent", cancel.Classes);
+                var presenter = ok.GetVisualDescendants().OfType<ContentPresenter>().First(p => p.Name == "PART_ContentPresenter");
+                Assert.Same(accent, presenter.Background);
+            }
+        }
+        finally
+        {
+            window.Close();
+        }
+    }
+
+    [AvaloniaTheory]
     [InlineData(false)]
     [InlineData(true)]
     public void Anchor_item_marker_matches_nav_menu_selection_indicator(bool dark)

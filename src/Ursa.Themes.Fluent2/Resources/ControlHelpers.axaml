@@ -48,29 +48,6 @@
       <Setter Property="BorderBrush" Value="Transparent" />
     </Style>
   </ControlTheme>
-  <ControlTheme x:Key="UrsaFluent2AccentButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-    <Setter Property="BackgroundSizing" Value="OuterBorderEdge" />
-    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Background" Value="{DynamicResource AccentButtonBackground}" />
-      <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrush}" />
-      <Setter Property="Foreground" Value="{DynamicResource AccentButtonForeground}" />
-    </Style>
-    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Background" Value="{DynamicResource AccentButtonBackgroundPointerOver}" />
-      <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrushPointerOver}" />
-      <Setter Property="Foreground" Value="{DynamicResource AccentButtonForegroundPointerOver}" />
-    </Style>
-    <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Background" Value="{DynamicResource AccentButtonBackgroundPressed}" />
-      <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrushPressed}" />
-      <Setter Property="Foreground" Value="{DynamicResource AccentButtonForegroundPressed}" />
-    </Style>
-    <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Background" Value="{DynamicResource AccentButtonBackgroundDisabled}" />
-      <Setter Property="BorderBrush" Value="{DynamicResource AccentButtonBorderBrushDisabled}" />
-      <Setter Property="Foreground" Value="{DynamicResource AccentButtonForegroundDisabled}" />
-    </Style>
-  </ControlTheme>
   <ControlTheme x:Key="UrsaFluent2CardBorder" TargetType="Border">
     <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
     <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />

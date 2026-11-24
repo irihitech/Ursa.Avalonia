@@ -180,26 +180,21 @@
         </Setter>
         <Style Selector="^ /template/ Button#PART_CancelButton">
             <Setter Property="Grid.Column" Value="0" />
-            <Setter Property="iri:ClassHelper.Classes" Value="Tertiary" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_CANCEL}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_NoButton">
             <Setter Property="Grid.Column" Value="1" />
-            <Setter Property="iri:ClassHelper.Classes" Value="Danger" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_NO}" />
-            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_YesButton">
             <Setter Property="Grid.Column" Value="2" />
-            <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="iri:ClassHelper.Classes" Value="accent" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_YES}" />
-            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^ /template/ Button#PART_OKButton">
             <Setter Property="Grid.Column" Value="3" />
-            <Setter Property="iri:ClassHelper.Classes" Value="Primary" />
+            <Setter Property="iri:ClassHelper.Classes" Value="accent" />
             <Setter Property="Content" Value="{DynamicResource STRING_MENU_DIALOG_OK}" />
-            <Setter Property="Theme" Value="{DynamicResource UrsaFluent2AccentButton}" />
         </Style>
         <Style Selector="^[Position=Right] /template/ Border#PART_Root">
             <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding, Converter={iri:ThicknessMixerConverter Left}}" />
