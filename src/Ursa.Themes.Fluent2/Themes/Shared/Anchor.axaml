@@ -1,6 +1,6 @@
 <ResourceDictionary x:ClassModifier="internal" xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Thickness x:Key="AnchorIndent">8,4,0,4</Thickness>
     <x:Double x:Key="AnchorPipeWidth">2</x:Double>
-    <CornerRadius x:Key="AnchorPipeCornerRadius">1</CornerRadius>
+    <Thickness x:Key="AnchorSelectionIndicatorMargin">-0.5,0,0,0</Thickness>
     <x:Double x:Key="AnchorDefaultHeight">20</x:Double>
 </ResourceDictionary>

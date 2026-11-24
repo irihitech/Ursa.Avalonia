@@ -32,12 +32,29 @@
             <ControlTemplate TargetType="u:AnchorItem">
                 <StackPanel>
                     <Panel Background="{TemplateBinding Background}">
-                        <Border
-                            Name="PART_Pipe"
-                            Width="{DynamicResource AnchorPipeWidth}"
-                            CornerRadius="{DynamicResource AnchorPipeCornerRadius}"
+                        <Rectangle
+                            Name="PART_SelectionIndicator"
+                            Width="{DynamicResource ListBoxItemSelectionIndicatorWidth}"
+                            Height="{DynamicResource ListBoxItemSelectionIndicatorHeight}"
+                            Margin="{DynamicResource AnchorSelectionIndicatorMargin}"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Stretch" />
+                            VerticalAlignment="Center"
+                            RadiusX="{DynamicResource ListBoxItemSelectionIndicatorRadius}"
+                            RadiusY="{DynamicResource ListBoxItemSelectionIndicatorRadius}"
+                            Fill="{DynamicResource ListViewItemSelectionIndicatorFill}"
+                            IsHitTestVisible="False"
+                            UseLayoutRounding="False"
+                            Opacity="0"
+                            RenderTransform="scaleY(0)">
+                            <Rectangle.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition
+                                        Property="RenderTransform"
+                                        Duration="{DynamicResource ControlFastAnimationDuration}"
+                                        Easing="{DynamicResource ControlFastOutSlowInKeySpline}" />
+                                </Transitions>
+                            </Rectangle.Transitions>
+                        </Rectangle>
                         <Panel>
                             <ContentPresenter
                                 Name="{x:Static iri:PartNames.PART_HeaderPresenter}"
@@ -61,12 +78,19 @@
         <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
             <Setter Property="MinHeight" Value="{DynamicResource AnchorDefaultHeight}" />
         </Style>
+        <Style Selector="^:pointerover /template/ ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource AnchorPointerOverForeground}" />
+        </Style>
         <Style Selector="^:selected">
             <Style Selector="^ /template/ ContentPresenter#PART_HeaderPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource AnchorSelectedForeground}" />
             </Style>
-            <Style Selector="^ /template/ Border#PART_Pipe">
-                <Setter Property="Background" Value="{DynamicResource AnchorPipeSelectedBackground}" />
+            <Style Selector="^ /template/ Rectangle#PART_SelectionIndicator">
+                <Setter Property="Opacity" Value="1" />
+                <Setter Property="RenderTransform" Value="scaleY(1)" />
+            </Style>
+            <Style Selector="^:disabled /template/ Rectangle#PART_SelectionIndicator">
+                <Setter Property="Fill" Value="{DynamicResource ListViewItemSelectionIndicatorFillDisabled}" />
             </Style>
         </Style>
     </ControlTheme>

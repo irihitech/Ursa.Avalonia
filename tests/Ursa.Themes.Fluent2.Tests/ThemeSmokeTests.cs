@@ -4,7 +4,9 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Shapes;
 using Avalonia.Headless.XUnit;
+using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Media.Transformation;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
@@ -17,6 +19,39 @@ namespace Ursa.Themes.Fluent2.Tests;
 
 public class ThemeSmokeTests
 {
+    [AvaloniaTheory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void Anchor_item_marker_matches_nav_menu_selection_indicator(bool dark)
+    {
+        var item = new AnchorItem { Header = "Section" };
+        var anchor = new Anchor { Items = { item } };
+        var window = new Window { Content = anchor, RequestedThemeVariant = dark ? ThemeVariant.Dark : ThemeVariant.Light };
+        try
+        {
+            window.Show();
+            Dispatcher.UIThread.RunJobs();
+            var indicator = item.GetVisualDescendants().OfType<Rectangle>().Single(r => r.Name == "PART_SelectionIndicator");
+            var variant = window.ActualThemeVariant;
+            Assert.True(Application.Current!.TryGetResource("ListBoxItemSelectionIndicatorWidth", variant, out var width));
+            Assert.True(Application.Current!.TryGetResource("ListBoxItemSelectionIndicatorHeight", variant, out var height));
+            Assert.True(Application.Current!.TryGetResource("ListViewItemSelectionIndicatorFill", variant, out var fill));
+            Assert.Equal((double)width!, indicator.Width);
+            Assert.Equal((double)height!, indicator.Height);
+            Assert.Equal(VerticalAlignment.Center, indicator.VerticalAlignment);
+            Assert.Same(fill, indicator.Fill);
+            Assert.Equal(0, indicator.Opacity);
+
+            item.IsSelected = true;
+            Dispatcher.UIThread.RunJobs();
+            Assert.Equal(1, indicator.Opacity);
+            Assert.Equal(Matrix.Identity, indicator.GetBaseValue(Visual.RenderTransformProperty).Value!.Value);
+        }
+        finally
+        {
+            window.Close();
+        }
+    }
     [AvaloniaTheory]
     [InlineData(false)]
     [InlineData(true)]
